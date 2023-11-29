@@ -40,9 +40,10 @@ def receive_places():
     update_register = place_connect.update_last_row(data_rec)
     recommend = RecommendByPlace()
     k_neighbors = recommend.find_nearest_neighbors()
-    print(f'Os vizinhos são: \n{k_neighbors}')
+    places = recommend.get_places(k_neighbors)
+    print(f'Os vizinhos são: \n{places}')
 
-    response = {'message': 'Data received successfully', 'data': data_rec}
+    response = {'message': 'Data received successfully', 'data': places}
     return jsonify(response), 200
 
 if __name__ == '__main__':
